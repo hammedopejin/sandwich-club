@@ -85,7 +85,9 @@ public class DetailActivity extends AppCompatActivity {
         String ingredientString = "";
         if(igredientsArray.size() > 0) {
             for (int i = 0; i < igredientsArray.size(); i++) {
-                ingredientString += igredientsArray.get(i) + ", ";
+                if (i < (igredientsArray.size() -1)) {
+                    ingredientString += igredientsArray.get(i) + ", ";
+                } else { ingredientString += igredientsArray.get(i) + ""; }
             }
         }
         if (ingredientString.isEmpty()){
@@ -109,7 +111,9 @@ public class DetailActivity extends AppCompatActivity {
         String alsoKnownAsString = "";
         if (alsoKnownAsArray.size() > 0) {
             for (int i = 0; i < alsoKnownAsArray.size(); i++) {
-                alsoKnownAsString += alsoKnownAsArray.get(i) + ", ";
+                if (i < (alsoKnownAsArray.size() -1)) {
+                    alsoKnownAsString += alsoKnownAsArray.get(i) + ", ";
+                } else { alsoKnownAsString += alsoKnownAsArray.get(i) + ""; }
             }
         }
         if (alsoKnownAsString.isEmpty()){
