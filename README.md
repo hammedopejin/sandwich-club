@@ -18,9 +18,7 @@ Through this project, you will:
 - Design an activity layout
 - Populate all fields in the layout accordingly
 
-## How Do I Complete this Project?
-Download the [Sandwich Club app starter code.](https://github.com/udacity/sandwich-club-starter-code)
-
-Design the layout for the detail activity so the different elements
-display in a sensible way. Implement the JSON parsing in JsonUtils so it
-produces a Sandwich Object that can be used to populate the UI that you designed.
+## Project Completed
+Layout for detail activity was designed so the different elements
+displays in a sensible way. Implemented the JSON parsing in JsonUtils so it
+produces a Sandwich Object that was used to populate the UI that was designed.
