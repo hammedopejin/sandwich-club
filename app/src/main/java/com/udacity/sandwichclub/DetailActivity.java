@@ -3,6 +3,7 @@ package com.udacity.sandwichclub;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -82,14 +83,7 @@ public class DetailActivity extends AppCompatActivity {
         mainName.setText(mainNameString);
 
         List igredientsArray = sandwich.getIngredients();
-        String ingredientString = "";
-        if(igredientsArray.size() > 0) {
-            for (int i = 0; i < igredientsArray.size(); i++) {
-                if (i < (igredientsArray.size() -1)) {
-                    ingredientString += igredientsArray.get(i) + ", ";
-                } else { ingredientString += igredientsArray.get(i) + ""; }
-            }
-        }
+        String ingredientString = TextUtils.join(", ", igredientsArray);
         if (ingredientString.isEmpty()){
             ingredientString = "Unknown";
         }
@@ -108,14 +102,7 @@ public class DetailActivity extends AppCompatActivity {
         placeOfOrigin.setText(placeOfOriginString);
 
         List alsoKnownAsArray = sandwich.getAlsoKnownAs();
-        String alsoKnownAsString = "";
-        if (alsoKnownAsArray.size() > 0) {
-            for (int i = 0; i < alsoKnownAsArray.size(); i++) {
-                if (i < (alsoKnownAsArray.size() -1)) {
-                    alsoKnownAsString += alsoKnownAsArray.get(i) + ", ";
-                } else { alsoKnownAsString += alsoKnownAsArray.get(i) + ""; }
-            }
-        }
+        String alsoKnownAsString = TextUtils.join(", ", alsoKnownAsArray);
         if (alsoKnownAsString.isEmpty()){
             alsoKnownAsString = "Unknown";
         }

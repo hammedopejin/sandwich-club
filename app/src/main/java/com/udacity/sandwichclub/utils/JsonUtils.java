@@ -11,7 +11,13 @@ import java.util.List;
 
 public class JsonUtils {
 
-
+    private static final String NAME = "name";
+    private static final String MAINNAME = "mainName";
+    private static final String ALSOKNOWNAS = "alsoKnownAs";
+    private static final String PLACEOFORIGIN = "placeOfOrigin";
+    private static final String DESCRIPTION = "description";
+    private static final String IMAGE = "image";
+    private static final String INGREDIENTS = "ingredients";
 
     public static Sandwich parseSandwichJson(String json) {
         String mainName = "";
@@ -25,27 +31,33 @@ public class JsonUtils {
         try {
             jObject = new JSONObject(json);
 
-            JSONObject jName = jObject.getJSONObject("name");
-            mainName = jName.getString("mainName");
+            JSONObject jName = jObject.getJSONObject(NAME);
+            mainName = jName.optString(MAINNAME);
 
-            JSONArray jAlsoKnownAsArray = jName.getJSONArray("alsoKnownAs");
+            jsonArratToArrayList(jName, ALSOKNOWNAS, alsoKnownAs);
 
-            for (int i = 0; i < jAlsoKnownAsArray.length(); i++){
-                alsoKnownAs.add(jAlsoKnownAsArray.getString(i));
-            }
+            placeOfOrigin = jObject.optString(PLACEOFORIGIN);
+            description = jObject.optString(DESCRIPTION);
+            image = jObject.optString(IMAGE);
 
-            placeOfOrigin = jObject.getString("placeOfOrigin");
-            description = jObject.getString("description");
-            image = jObject.getString("image");
-
-            JSONArray jIngredientArray = jObject.getJSONArray("ingredients");
-            for (int i = 0; i < jIngredientArray.length(); i++){
-                ingredients.add(jIngredientArray.getString(i));
-            }
+            jsonArratToArrayList(jObject, INGREDIENTS, ingredients);
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return new Sandwich(mainName, alsoKnownAs, placeOfOrigin, description, image, ingredients);
+    }
+
+    private static void jsonArratToArrayList (JSONObject jsonObject, String name, List<String> listItem){
+        JSONArray jsonArray = null;
+        try {
+            jsonArray = jsonObject.getJSONArray(name);
+            for (int i = 0; i < jsonArray.length(); i++){
+                listItem.add(jsonArray.getString(i));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 }
